@@ -22,13 +22,13 @@ const Navbar = ({ setShowLogin }) => {
         {/* <img className="logo" src={assets.logo} alt="" /> */}
       </Link>
       <ul className="navbar-menu">
-        <Link
+        {/* <Link
           to="/"
           onClick={() => setMenu("home")}
           className={`${menu === "home" ? "" : ""}`}
         >
           Home
-        </Link>
+        </Link> */}
         {/* <a href='#explore-menu' onClick={() => setMenu("menu")} className={`${menu === "menu" ? "active" : ""}`}>menu</a> */}
         {/* <a href='#app-download' onClick={() => setMenu("mob-app")} className={`${menu === "mob-app" ? "active" : ""}`}>mobile app</a>
         <a href='#footer' onClick={() => setMenu("contact")} className={`${menu === "contact" ? "active" : ""}`}>contact us</a> */}
