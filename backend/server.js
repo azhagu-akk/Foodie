@@ -1,47 +1,35 @@
-import express from "express";
-import cors from "cors";
-import { connectDB } from "./config/db.js";
-import userRouter from "./routes/userRoute.js";
-import foodRouter from "./routes/foodRoute.js";
-import "dotenv/config";
-import cartRouter from "./routes/cartRoute.js";
-import orderRouter from "./routes/orderRoute.js";
+import express from "express"
+import cors from "cors"
+import 'dotenv/config'
+import { connectDB } from "./config/db.js"
+import foodRoutes from "./routes/foodRoutes.js"
+import userRouter from "./routes/userRoutes.js"
+import cartRouter from "./routes/cartRoutes.js"
+import orderRouter from "./routes/orderRoutes.js"
 
-// app config
-const app = express();
-const port = process.env.PORT;
 
-// middlewares
-app.use(express.json());
+//app config
+const app = express()
+const port = process.env.PORT
 
-// const allowedOrigins = ["https://foodie5.netlify.app/"];
-
+//middleware
+app.use(express.json())
 app.use(cors())
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     methods: ["POST", "GET", "PUT", "DELETE"],
-//     credentials: true,
-//   })
 
+//endpoint for testing
+app.get("/",(req,res)=>{
+    res.send("hello world")
+})
+//endpoints
+app.use("/api/food",foodRoutes)
+app.use("/images",express.static('upload'))
+app.use("/api/data",userRouter)
+app.use("/api/cart",cartRouter)
+app.use("/api/order",orderRouter)
+//database connection
+connectDB() 
 
-// db connection
-connectDB();
-
-// api endpoints
-app.use("/api/user", userRouter);
-app.use("/api/food", foodRouter);
-app.use("/images", express.static("uploads"));
-app.use("/api/cart", cartRouter);
-app.use("/api/order", orderRouter);
-
-app.get("/", (req, res) => {
-  res.json({ message: "API working" });
-});
-
-app.listen(port, () => console.log(`Server started`));
+//port listening
+app.listen(port,()=>{
+    console.log(`Server Connected`)
+})
