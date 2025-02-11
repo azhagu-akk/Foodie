@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import { useContext} from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 export const Navbar = ({ setShowLogin }) => {
-  const [menu, setMenu] = useState("home");
+  // const [menu, setMenu] = useState("home");
   const{getTotalAmount,token,setToken}=useContext(StoreContext)
   const navigate = useNavigate();
   const logOut =()=>{
@@ -80,3 +80,5 @@ export const Navbar = ({ setShowLogin }) => {
     </div>
   );
 };
+
+
